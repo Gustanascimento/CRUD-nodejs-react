@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
+app.use(express.json());
 
 /**
  * GET - Buscar informações
@@ -11,6 +11,10 @@ const bodyParser = require('body-parser');
  */
 
 app.get("/", (request, response) => {
+    return response.json({message: "Hello World!"});
+});
+
+app.post("/", (request, response) => {
     return response.json({message: "Hello World!"});
 });
 
