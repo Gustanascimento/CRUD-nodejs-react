@@ -1,23 +1,32 @@
-const express = require('express');
-const app = express();
+const { initializeApp, cert } = require('firebase-admin/app');
+const { getFirestore } = require('firebase-admin/firestore');
+
+const express = require('express')
+const app = express()
 app.use(express.json());
 
-/**
- * GET - Buscar informações
- * POST - Criar informações
- * PUT - Atualizar informações
- * PATCH - Atualizar informação específica
- * DELETE - Deletar informações
- */
+const serviceAccount = require('./database/serviceAccountKey.json');
 
-app.get("/", (request, response) => {
-    return response.json({message: "Hello World!"});
+initializeApp({ credential: cert(serviceAccount)});
+
+const db = getFirestore();
+
+
+//CREATE
+
+//READ
+
+//UPDATE
+
+//DELETE
+
+
+
+//express server settings
+const port = 3001
+const host = 'localhost'
+const protocol = 'http://'
+
+app.listen(port, () => {
+    console.log('Server is running on '+protocol+host+':'+port+'/')
 });
-
-app.post("/", (request, response) => {
-    return response.json({message: "Hello World!"});
-});
-
-
-//localhost:3000/
-app.listen(3000);
